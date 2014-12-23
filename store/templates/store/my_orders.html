@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title> ShopZone | My Orders </title>
+	</head>
+	
+	{% include "store/style.html" %}
+
+	{% include "store/top.html" %}
+
+		<div>
+			<h2 align="center" style="color:#336699">My Orders</h2>
+		</div>
+
+		<div align="center">
+			<table align="center" style="font-size:1.25em">
+				<tr align="center">
+					<th width=50px> Order ID </th>
+					<th width=300px> Product </th>
+					<th width=60px> Price </th>
+					<th width=200px> Mode of payment </th>
+					<th width=150px> Status </th>
+					<th width=280px> Status Change Time </th>
+					<th width=150px> Download PDF </th>
+					<th width=150px> Cancel Order </th>
+				</tr>	
+				{% for i in orders %}
+				<tr align="center">
+					<td> {{ i.pk }} </td>
+					<td> <a href="/shop/{{i.product.pk }}"><div class="linkdiv">{{ i.product }} </div></a></td>
+					<td> {{ i.product.price }} </td>
+
+					<td> {% if i.payment_type == 1 %} Store credit
+						{% else %} Cash on delivery
+						{% endif %} </td>
+
+					<td> {% if i.status == 1 %} New
+						{% elif i.status == 2 %} Shipping
+						{% elif i.status == 3 %} Delivered
+						{% elif i.status == 4 %} Returned
+						{% else %} Cancelled
+						{% endif %} </td>
+
+					<td> {{ i.status_change_time }} </td>
+
+					<td> <a href="/shop/my_orders/{{ i.pk }}/" target="_blank"> <div class="linkdiv"> {{ i.pk }} </div> </a> </td>
+
+					{% if i.status == 5 %}
+						<td> <a href="/shop/cancel_order/{{ i.pk }}" target="_blank"><div class="linkdiv"> Cancel </div></a></td>
+					{% elif i.status == 3 %}
+						<td> <a href="/shop/cancel_order/{{ i.pk }}" target="_blank"><div class="linkdiv"> Cancel </div></a></td>
+					{% else %}
+						<td> <a href="/shop/cancel_order/{{ i.pk }}"><div class="linkdiv"> Cancel </div></a></td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+			<table/>
+		</div>
+
+	{% include "store/bottom.html" %}

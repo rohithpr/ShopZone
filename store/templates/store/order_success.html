@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title> ShopZone | Order Placed </title>
+	</head>
+	
+	{% include "store/style.html" %}
+
+	{% include "store/top.html" %}
+
+		<div>
+			<h2 align="center" style="color:#336699">Order Placed</h2>
+		</div>
+
+		<div align="center">
+			{% if customer and product and time_of_order and payment_type %}
+				<table style="font-size:1.25em;">
+					<tr align="center">
+						<td> Product Name: </td>
+						<td style="padding-left:50px"> {{ product }} </td>
+					</tr>
+					<tr align="center">
+						<td> Customer: </td>
+						<td style="padding-left:50px"> {{ customer }}</td>
+					</tr>
+					<tr align="center">
+						<td> Mode of payment: </td>
+						<td style="padding-left:50px"> {{ payment_type }}</td>
+					</tr>
+					<tr align="center">
+						<td> Order placed at: </td>
+						<td style="padding-left:50px"> {{ time_of_order }}</td>
+					</tr>
+				</table>
+				
+				<div>
+					<a href="/shop/"><p align=center style="color:#006600; font-size:1.5em;">Continue Shopping</p></a>
+				</div>
+			{% else %}
+				Error!!
+			{% endif %}
+		</div>
+
+	{% include "store/bottom.html" %}

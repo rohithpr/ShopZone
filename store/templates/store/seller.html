@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title> ShopZone | Seller Details </title>
+	</head>
+	
+	{% include "store/style.html" %}
+
+	{% include "store/top.html" %}
+
+		<div>
+			<h2 align="center" style="color:#336699">Seller Details</h2>
+		</div>
+
+		<div align="center">
+			{% if seller %}
+				<table style="font-size:1.25em">
+					<tr align="center">
+						<td width=200px> Seller Name: <td>
+						<td width=500px> {{ seller.seller_name }} </td>
+					</tr>
+					<tr align="center">
+						<td> Average Rating: <td>
+						<td> {% if avg_rating %} {{ avg_rating }} {% else %} 0 {% endif %} </td>
+					</tr>
+					<tr align="center">
+						<td> Address: <td>
+						<td> {{ seller.address }}</td>
+					</tr>
+					<tr align="center">
+						<td> Reviews: <td>
+						<td> <a href="/shop/seller/{{ seller.id }}/sellerreviews/"><div class="linkdiv">{{ seller.seller_name }} </div></a> </td>
+					</tr>
+				</table>
+			{% else %}
+				<p>Invalid Seller ID.</p>
+			{% endif %}
+		</div>
+
+	{% include "store/bottom.html" %}

@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title> ShopZone | Product Reviews </title>
+	</head>
+	
+	{% include "store/style.html" %}
+
+	{% include "store/top.html" %}
+
+		<div>
+			<h2 align="center" style="color:#336699">Reviews : {{ product }}</h2>
+		</div>
+
+		<div>
+			{% if reviews %}
+				<table align="center" style="font-size:1.25em;">
+					<tr>
+						<th style="min-width:100px;"> Rating </th>
+						<th style="min-width:800px;"> Review </th>
+						<th style="min-width:100px;"> SA </th>
+					</tr>
+					{% for review in reviews %}
+					<tr>
+						<td align=center> {{ review.rating }} </td>
+						<td align=center> {{ review.review }} </td>
+						<td align=center> {{ review.sentiment }} </td>
+					</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<p>No reviews available for this Product. Do you want to add one? </p>
+			{% endif %}
+		</div>
+
+		<div style="border-left: 50px solid white;">
+			<p align:center style="font-size:1.15em"> Have an opinion about this product? &nbsp;<a href="/admin/store/productreview/add/">Share it with us!</a></p>
+		</div>
+	{% include "store/bottom.html" %}

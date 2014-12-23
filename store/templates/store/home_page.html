@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title> ShopZone | Home </title>
+	</head>
+	
+	{% include "store/style.html" %}
+
+	{% include "store/top.html" %}
+
+		<br/><br/>
+
+		<!-- All those columns!!! -->
+		<div class="columns" style="border-left:0px;">
+
+			<h2 align="center" style="color:#336699">Top Products</h2><hr/>
+				
+				{% if all_products_list %}
+					{% for product in all_products_list %}
+						<a href="/shop/{{ product.id }}/"><div class="linkdiv">{{ product.product_name }}</div></a>
+					{% endfor %}
+						
+				{% else %}
+					<p>No products are available.</p>
+				{% endif %}
+		</div>
+
+		<div class="columns">
+		
+			<h2 align="center" style="color:#336699">Categories</h2><hr/>
+
+				{% if categories %}
+					{% for category in categories %}
+						<a href="/shop/{{ category }}/"><div class="linkdiv">{{ category }}</div></a>
+					{% endfor %}
+				{% else %}
+					<p>No categories are available.</p>
+				{% endif %}
+		</div>
+
+		<div class="columns">
+			
+			<h2 align="center" style="color:#336699">ShopZone Reviews</h2><hr/>
+
+				{% if store_review %}
+					{% for review in store_review %}
+						{{ review.review }}<br/>
+					{% endfor %}
+						<a href="/shop/store_reviews/"><div class="linkdiv">View all</div></a>
+				{% else %}
+					<p>No reviews are available.</p>
+				{% endif %}
+		</div>
+
+	{% include "store/bottom.html" %}
